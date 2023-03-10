@@ -10,20 +10,20 @@
 */
 namespace Manticoresearch\Buddy\Plugin\EmptyString;
 
-use Manticoresearch\Buddy\Core\Plugin\Executor as BaseExecutor;
+use Manticoresearch\Buddy\Core\Plugin\BaseHandler;
 use Manticoresearch\Buddy\Core\Task\Task;
 use Manticoresearch\Buddy\Core\Task\TaskResult;
 use RuntimeException;
 use parallel\Runtime;
 
-final class Executor extends BaseExecutor {
+final class Handler extends BaseHandler {
 	/**
 	 * Initialize the executor
 	 *
-	 * @param Request $request
+	 * @param Payload $payload
 	 * @return void
 	 */
-	public function __construct(public Request $request) {
+	public function __construct(public Payload $payload) {
 	}
 
   /**

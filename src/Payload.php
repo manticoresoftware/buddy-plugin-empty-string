@@ -10,21 +10,21 @@
 */
 namespace Manticoresearch\Buddy\Plugin\EmptyString;
 
-use Manticoresearch\Buddy\Core\Network\Request as NetworkRequest;
-use Manticoresearch\Buddy\Core\Plugin\Request as BaseRequest;
+use Manticoresearch\Buddy\Core\Network\Request;
+use Manticoresearch\Buddy\Core\Plugin\BasePayload;
 
 /**
  * This is simple do nothing request that handle empty queries
  * which can be as a result of only comments in it that we strip
  */
-final class Request extends BaseRequest {
+final class Payload extends BasePayload {
 	public string $path;
 
   /**
-	 * @param NetworkRequest $request
+	 * @param Request $request
 	 * @return static
 	 */
-	public static function fromNetworkRequest(NetworkRequest $request): static {
+	public static function fromRequest(Request $request): static {
 		$self = new static();
 		// We just need to do something, but actually its' just for PHPstan
 		$self->path = $request->path;
@@ -32,10 +32,10 @@ final class Request extends BaseRequest {
 	}
 
 	/**
-	 * @param NetworkRequest $request
+	 * @param Request $request
 	 * @return bool
 	 */
-	public static function hasMatch(NetworkRequest $request): bool {
+	public static function hasMatch(Request $request): bool {
 		return $request->payload === '' ||
 				stripos($request->payload, 'set') === 0 ||
 				stripos($request->payload, 'create database') === 0;
