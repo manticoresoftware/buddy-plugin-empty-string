@@ -34,14 +34,7 @@ final class Handler extends BaseHandler {
 	 */
 	public function run(Runtime $runtime): Task {
 		$taskFn = static function (): TaskResult {
-			return new TaskResult(
-				[[
-					'total' => 0,
-					'error' => '',
-					'warning' => '',
-				],
-				]
-			);
+			return TaskResult::none();
 		};
 
 		return Task::createInRuntime(
