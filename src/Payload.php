@@ -37,7 +37,10 @@ final class Payload extends BasePayload {
 	 */
 	public static function hasMatch(Request $request): bool {
 		return $request->payload === '' ||
-				stripos($request->payload, 'set') === 0 ||
-				stripos($request->payload, 'create database') === 0;
+			stripos($request->payload, 'set sql_quote_show_create') === 0 ||
+			stripos($request->payload, 'set @saved_cs_client') === 0 ||
+			stripos($request->payload, 'set character_set_client') === 0 ||
+			stripos($request->payload, 'set session character_set_results') === 0 ||
+			stripos($request->payload, 'create database') === 0;
 	}
 }
