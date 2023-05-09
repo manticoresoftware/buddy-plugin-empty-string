@@ -10,6 +10,7 @@
 */
 namespace Manticoresearch\Buddy\Plugin\EmptyString;
 
+use Manticoresearch\Buddy\Core\ManticoreSearch\Endpoint;
 use Manticoresearch\Buddy\Core\Network\Request;
 use Manticoresearch\Buddy\Core\Plugin\BasePayload;
 
@@ -36,7 +37,7 @@ final class Payload extends BasePayload {
 	 * @return bool
 	 */
 	public static function hasMatch(Request $request): bool {
-		return $request->payload === '' ||
+		return ($request->payload === '' && $request->endpointBundle !== Endpoint::Elastic) ||
 			stripos($request->payload, 'set sql_quote_show_create') === 0 ||
 			stripos($request->payload, 'set @saved_cs_client') === 0 ||
 			stripos($request->payload, 'set character_set_client') === 0 ||
