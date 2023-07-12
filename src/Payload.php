@@ -42,6 +42,8 @@ final class Payload extends BasePayload {
 			stripos($request->payload, 'set @saved_cs_client') === 0 ||
 			stripos($request->payload, 'set character_set_client') === 0 ||
 			stripos($request->payload, 'set session character_set_results') === 0 ||
-			stripos($request->payload, 'create database') === 0;
+			stripos($request->payload, 'create database') === 0 ||
+			stripos($request->payload, 'lock tables') === 0 ||
+			stripos($request->payload, 'unlock tables') === 0;
 	}
 }
