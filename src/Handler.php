@@ -14,7 +14,6 @@ use Manticoresearch\Buddy\Core\Plugin\BaseHandler;
 use Manticoresearch\Buddy\Core\Task\Task;
 use Manticoresearch\Buddy\Core\Task\TaskResult;
 use RuntimeException;
-use parallel\Runtime;
 
 final class Handler extends BaseHandler {
 	/**
@@ -32,14 +31,12 @@ final class Handler extends BaseHandler {
 	 * @return Task
 	 * @throws RuntimeException
 	 */
-	public function run(Runtime $runtime): Task {
+	public function run(): Task {
 		$taskFn = static function (): TaskResult {
 			return TaskResult::none();
 		};
 
-		return Task::createInRuntime(
-			$runtime, $taskFn, []
-		)->run();
+		return Task::create($taskFn, [])->run();
 	}
 
 	/**
